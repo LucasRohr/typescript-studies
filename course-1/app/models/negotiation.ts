@@ -1,27 +1,27 @@
 export class NegotiationModel {
-  #value;
-  #date;
-  #quantity;
+  private _value;
+  private _date;
+  private _quantity;
 
   constructor(value, date, quantity) {
-    this.#value = value;
-    this.#date = date;
-    this.#quantity = quantity;
+    this._value = value;
+    this._date = date;
+    this._quantity = quantity;
   }
 
   get value() {
-    return this.#value;
+    return this._value;
   }
 
   get date() {
-    return this.#date;
+    return this._date;
   }
 
   get quantity() {
-    return this.#quantity;
+    return this._quantity;
   }
 
   get volume() {
-    return this.#quantity * this.#value;
+    return this._quantity * this._value;
   }
 }
