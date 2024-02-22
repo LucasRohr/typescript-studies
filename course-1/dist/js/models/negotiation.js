@@ -2,16 +2,17 @@ export class NegotiationModel {
     _value;
     _date;
     _quantity;
-    constructor(value, date, quantity) {
-        this._value = value;
-        this._date = date;
-        this._quantity = quantity;
+    constructor(_value, _date, _quantity) {
+        this._value = _value;
+        this._date = _date;
+        this._quantity = _quantity;
     }
     get value() {
         return this._value;
     }
     get date() {
-        return this._date;
+        const parsedDate = new Date(this._date.getTime());
+        return parsedDate;
     }
     get quantity() {
         return this._quantity;

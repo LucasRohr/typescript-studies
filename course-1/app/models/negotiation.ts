@@ -1,20 +1,17 @@
 export class NegotiationModel {
-  private _value: number
-  private _date: Date
-  private _quantity: number
-
-  constructor(value: number, date: Date, quantity: number) {
-    this._value = value
-    this._date = date
-    this._quantity = quantity
-  }
+  constructor(
+    private _value: number,
+    private _date: Date,
+    private _quantity: number
+  ) {}
 
   get value(): number {
     return this._value
   }
 
   get date(): Date {
-    return this._date
+    const parsedDate = new Date(this._date.getTime())
+    return parsedDate
   }
 
   get quantity(): number {
