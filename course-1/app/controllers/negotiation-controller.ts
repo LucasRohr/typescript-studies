@@ -1,6 +1,6 @@
 import { NegotiationModel } from '../models/negotiation.js'
 import { NegotiationsHandler } from '../models/negotiations-handler.js'
-import { NegotiationsView } from '../views/negotiations-view.js'
+import { NegotiationsView, ToastMessageView } from '../views/index.js'
 
 const NEGOTIATION_INPUT_IDS = Object.freeze({
   DATE: '#data',
@@ -9,6 +9,9 @@ const NEGOTIATION_INPUT_IDS = Object.freeze({
 })
 
 const NEGOTIATIONS_VIEW_ID = '#negotiationsView'
+const TOAST_MESSAGE_VIEW_ID = '#toastMessageView'
+
+const TOAST_MESSAGE_TEXT = 'Negociação criada e incluida com sucesso!'
 
 export class NegotiationController {
   private dateInput: HTMLInputElement
@@ -17,6 +20,9 @@ export class NegotiationController {
   private negotiationsHandler: NegotiationsHandler = new NegotiationsHandler()
   private negotiationView: NegotiationsView = new NegotiationsView(
     NEGOTIATIONS_VIEW_ID
+  )
+  private toastMessageView: ToastMessageView = new ToastMessageView(
+    TOAST_MESSAGE_VIEW_ID
   )
 
   constructor() {
@@ -34,6 +40,8 @@ export class NegotiationController {
 
     this.negotiationsHandler.add(negotiation)
     this.negotiationView.update(this.negotiationsHandler)
+    this.toastMessageView.update(TOAST_MESSAGE_TEXT)
+
     this.cleanForm()
   }
 

@@ -1,12 +1,7 @@
 import { NegotiationsHandler } from '../models/negotiations-handler.js'
+import { View } from './view.js'
 
-export class NegotiationsView {
-  private element: HTMLElement
-
-  constructor(selector: string) {
-    this.element = document.querySelector(selector)
-  }
-
+export class NegotiationsView extends View<NegotiationsHandler> {
   returnTableBodyList(negotiationsHandler: NegotiationsHandler): string {
     return negotiationsHandler
       .getNegotiations()
@@ -21,7 +16,7 @@ export class NegotiationsView {
       .join('')
   }
 
-  returnTableTemplate(negotiationsHandler: NegotiationsHandler): string {
+  returnTemplate(negotiationsHandler: NegotiationsHandler): string {
     // Alternate date format solution: new Intl.DateTimeFormat().format(negotiation.date)
     return `
             <table class="table table-hover table-bordered">
@@ -38,9 +33,5 @@ export class NegotiationsView {
                 </tbody>
             </table>
         `
-  }
-
-  update(negotiationsHandler: NegotiationsHandler): void {
-    this.element.innerHTML = this.returnTableTemplate(negotiationsHandler)
   }
 }
