@@ -38,10 +38,13 @@ export class NegotiationController {
   }
 
   public add(): void {
-    const negotiation = this.createNegotiation()
-    const dateUtils: DateUtils = new DateUtils(negotiation.date)
+    const negotiation = NegotiationModel.createNegotiation(
+      this.dateInput.value,
+      this.valueInput.value,
+      this.quantityInput.value
+    )
 
-    const isValidDay: boolean = dateUtils.isWorkDay()
+    const isValidDay: boolean = DateUtils.isWorkDay(negotiation.date)
 
     if (isValidDay) {
       this.negotiationsHandler.add(negotiation)
@@ -51,15 +54,6 @@ export class NegotiationController {
     } else {
       this.toastMessageView.update(TOAST_WEEK_DAY_ERROR_TEXT)
     }
-  }
-
-  private createNegotiation(): NegotiationModel {
-    const regExp = /-/g
-    const date = new Date(this.dateInput.value.replace(regExp, ',')) // replace - for , with regex to parse date
-    const value = parseFloat(this.valueInput.value)
-    const quantity = parseInt(this.quantityInput.value)
-
-    return new NegotiationModel(value, date, quantity)
   }
 
   private cleanForm(): void {

@@ -26,9 +26,8 @@ export class NegotiationController {
         this.negotiationView.update(this.negotiationsHandler);
     }
     add() {
-        const negotiation = this.createNegotiation();
-        const dateUtils = new DateUtils(negotiation.date);
-        const isValidDay = dateUtils.isWorkDay();
+        const negotiation = NegotiationModel.createNegotiation(this.dateInput.value, this.valueInput.value, this.quantityInput.value);
+        const isValidDay = DateUtils.isWorkDay(negotiation.date);
         if (isValidDay) {
             this.negotiationsHandler.add(negotiation);
             this.updateViews();
@@ -37,13 +36,6 @@ export class NegotiationController {
         else {
             this.toastMessageView.update(TOAST_WEEK_DAY_ERROR_TEXT);
         }
-    }
-    createNegotiation() {
-        const regExp = /-/g;
-        const date = new Date(this.dateInput.value.replace(regExp, ',')); // replace - for , with regex to parse date
-        const value = parseFloat(this.valueInput.value);
-        const quantity = parseInt(this.quantityInput.value);
-        return new NegotiationModel(value, date, quantity);
     }
     cleanForm() {
         this.dateInput.value = '';
