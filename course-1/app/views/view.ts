@@ -1,4 +1,4 @@
-export class View<T> {
+export abstract class View<T> {
   protected element: HTMLElement
 
   constructor(selector: string) {
@@ -9,10 +9,8 @@ export class View<T> {
     return this.element
   }
 
-  returnTemplate(model: T): string {
-    const ERROR_MESSAGE = 'Subclass needs to override returnTemplate method'
-    throw Error(ERROR_MESSAGE)
-  }
+  // Force returnTemplate implementation on subclasses
+  abstract returnTemplate(model: T): string
 
   update(model: T): void {
     this.element.innerHTML = this.returnTemplate(model)
