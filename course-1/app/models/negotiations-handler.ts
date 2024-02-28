@@ -8,12 +8,12 @@ export class NegotiationsHandler {
     this.negotiations = negotiations ?? []
   }
 
-  add(negotiation: NegotiationModel): void {
+  public add(negotiation: NegotiationModel): void {
     this.negotiations.push(negotiation)
   }
 
   // Alternate return type: ReadonlyArray<NegotiationModel>
-  getNegotiations(): readonly NegotiationModel[] {
+  public getNegotiations(): readonly NegotiationModel[] {
     return this.negotiations
   }
 }

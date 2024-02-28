@@ -10,9 +10,9 @@ export abstract class View<T> {
   }
 
   // Force returnTemplate implementation on subclasses
-  abstract returnTemplate(model: T): string
+  protected abstract returnTemplate(model: T): string
 
-  update(model: T): void {
+  public update(model: T): void {
     this.element.innerHTML = this.returnTemplate(model)
   }
 }

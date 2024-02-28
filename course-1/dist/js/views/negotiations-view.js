@@ -1,6 +1,6 @@
 import { View } from './view.js';
 export class NegotiationsView extends View {
-    returnTableBodyList(negotiationsHandler) {
+    mapTableBodyList(negotiationsHandler) {
         return negotiationsHandler
             .getNegotiations()
             .map((negotiation) => `<tr>
@@ -23,7 +23,7 @@ export class NegotiationsView extends View {
                 </thead>
 
                 <tbody>
-                    ${this.returnTableBodyList(negotiationsHandler)}
+                    ${this.mapTableBodyList(negotiationsHandler)}
                 </tbody>
             </table>
         `;

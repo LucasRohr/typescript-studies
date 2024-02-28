@@ -1,5 +1,6 @@
 import { NegotiationModel } from '../models/negotiation.js';
 import { NegotiationsHandler } from '../models/negotiations-handler.js';
+import { DateUtils } from '../utils/index.js';
 import { NegotiationsView, ToastMessageView } from '../views/index.js';
 const NEGOTIATION_INPUT_IDS = Object.freeze({
     DATE: '#data',
@@ -9,6 +10,7 @@ const NEGOTIATION_INPUT_IDS = Object.freeze({
 const NEGOTIATIONS_VIEW_ID = '#negotiationsView';
 const TOAST_MESSAGE_VIEW_ID = '#toastMessageView';
 const TOAST_MESSAGE_TEXT = 'Negociação criada e incluida com sucesso!';
+const TOAST_WEEK_DAY_ERROR_TEXT = 'A data informada deve ser um dia útil!';
 export class NegotiationController {
     dateInput;
     quantityInput;
@@ -25,10 +27,16 @@ export class NegotiationController {
     }
     add() {
         const negotiation = this.createNegotiation();
-        this.negotiationsHandler.add(negotiation);
-        this.negotiationView.update(this.negotiationsHandler);
-        this.toastMessageView.update(TOAST_MESSAGE_TEXT);
-        this.cleanForm();
+        const dateUtils = new DateUtils(negotiation.date);
+        const isValidDay = dateUtils.isWorkDay();
+        if (isValidDay) {
+            this.negotiationsHandler.add(negotiation);
+            this.updateViews();
+            this.cleanForm();
+        }
+        else {
+            this.toastMessageView.update(TOAST_WEEK_DAY_ERROR_TEXT);
+        }
     }
     createNegotiation() {
         const regExp = /-/g;
@@ -42,5 +50,9 @@ export class NegotiationController {
         this.valueInput.value = '';
         this.quantityInput.value = '';
         this.dateInput.focus();
+    }
+    updateViews() {
+        this.negotiationView.update(this.negotiationsHandler);
+        this.toastMessageView.update(TOAST_MESSAGE_TEXT);
     }
 }
