@@ -16,7 +16,7 @@ export class NegotiationController {
     quantityInput;
     valueInput;
     negotiationsHandler = new NegotiationsHandler();
-    negotiationView = new NegotiationsView(NEGOTIATIONS_VIEW_ID);
+    negotiationView = new NegotiationsView(NEGOTIATIONS_VIEW_ID, true);
     toastMessageView = new ToastMessageView(TOAST_MESSAGE_VIEW_ID);
     constructor() {
         // Init class instance with DOM element values
