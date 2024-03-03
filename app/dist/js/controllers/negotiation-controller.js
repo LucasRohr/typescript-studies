@@ -19,7 +19,6 @@ export class NegotiationController {
     negotiationView = new NegotiationsView(NEGOTIATIONS_VIEW_ID, true);
     toastMessageView = new ToastMessageView(TOAST_MESSAGE_VIEW_ID);
     constructor() {
-        // Init class instance with DOM element values
         this.dateInput = document.querySelector(NEGOTIATION_INPUT_IDS.DATE);
         this.quantityInput = document.querySelector(NEGOTIATION_INPUT_IDS.QUANTITY);
         this.valueInput = document.querySelector(NEGOTIATION_INPUT_IDS.VALUE);

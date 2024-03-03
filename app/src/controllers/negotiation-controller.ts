@@ -20,20 +20,15 @@ export class NegotiationController {
   private quantityInput: HTMLInputElement
   private valueInput: HTMLInputElement
   private negotiationsHandler: NegotiationsHandler = new NegotiationsHandler()
-  private negotiationView: NegotiationsView = new NegotiationsView(
-    NEGOTIATIONS_VIEW_ID,
-    true
-  )
-  private toastMessageView: ToastMessageView = new ToastMessageView(
-    TOAST_MESSAGE_VIEW_ID
-  )
+  private negotiationView: NegotiationsView = new NegotiationsView(NEGOTIATIONS_VIEW_ID, true)
+  private toastMessageView: ToastMessageView = new ToastMessageView(TOAST_MESSAGE_VIEW_ID)
 
   constructor() {
     // Init class instance with DOM element values
 
-    this.dateInput = document.querySelector(NEGOTIATION_INPUT_IDS.DATE)
-    this.quantityInput = document.querySelector(NEGOTIATION_INPUT_IDS.QUANTITY)
-    this.valueInput = document.querySelector(NEGOTIATION_INPUT_IDS.VALUE)
+    this.dateInput = document.querySelector(NEGOTIATION_INPUT_IDS.DATE) as HTMLInputElement
+    this.quantityInput = document.querySelector(NEGOTIATION_INPUT_IDS.QUANTITY) as HTMLInputElement
+    this.valueInput = document.querySelector(NEGOTIATION_INPUT_IDS.VALUE) as HTMLInputElement
 
     this.negotiationView.update(this.negotiationsHandler)
   }

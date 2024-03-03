@@ -2,7 +2,14 @@ export class View {
     element;
     sanitize = false;
     constructor(selector, sanitize) {
-        this.element = document.querySelector(selector);
+        const selectorElement = document.querySelector(selector);
+        if (selectorElement) {
+            this.element = selectorElement;
+        }
+        else {
+            const errorMessage = `Selector ${selector} is invalid, please verify the element`;
+            throw new Error(errorMessage);
+        }
         this.sanitize = sanitize ?? false;
     }
     get getElement() {

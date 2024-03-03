@@ -1,4 +1,4 @@
-import { NegotiationModel } from './negotiation'
+import { NegotiationModel } from './negotiation.js'
 
 export class NegotiationsHandler {
   // Alternate declaration: Array<NegotiationModel>

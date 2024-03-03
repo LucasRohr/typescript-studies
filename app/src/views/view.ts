@@ -3,7 +3,15 @@ export abstract class View<T> {
   private sanitize: boolean = false
 
   constructor(selector: string, sanitize?: boolean) {
-    this.element = document.querySelector(selector)
+    const selectorElement = document.querySelector(selector)
+
+    if (selectorElement) {
+      this.element = selectorElement as HTMLElement
+    } else {
+      const errorMessage = `Selector ${selector} is invalid, please verify the element`
+      throw new Error(errorMessage)
+    }
+
     this.sanitize = sanitize ?? false
   }
 
@@ -18,10 +26,7 @@ export abstract class View<T> {
     const template = this.returnTemplate(model)
 
     if (this.sanitize) {
-      this.element.innerHTML = template.replace(
-        /<script>[\s\S]*?<\/script>/,
-        ''
-      )
+      this.element.innerHTML = template.replace(/<script>[\s\S]*?<\/script>/, '')
     } else {
       this.element.innerHTML = template
     }

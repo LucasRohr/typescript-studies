@@ -1,5 +1,4 @@
 export class NegotiationsHandler {
-    // Alternate declaration: Array<NegotiationModel>
     negotiations = [];
     constructor(negotiations) {
         this.negotiations = negotiations ?? [];
@@ -7,7 +6,6 @@ export class NegotiationsHandler {
     add(negotiation) {
         this.negotiations.push(negotiation);
     }
-    // Alternate return type: ReadonlyArray<NegotiationModel>
     getNegotiations() {
         return this.negotiations;
     }
