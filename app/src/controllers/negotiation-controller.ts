@@ -1,3 +1,4 @@
+import { performanceLog } from '../decorators/index.js'
 import { NegotiationModel } from '../models/negotiation.js'
 import { NegotiationsHandler } from '../models/negotiations-handler.js'
 import { DateUtils } from '../utils/index.js'
@@ -33,6 +34,7 @@ export class NegotiationController {
     this.negotiationView.update(this.negotiationsHandler)
   }
 
+  @performanceLog()
   public add(): void {
     const negotiation = NegotiationModel.createNegotiation(
       this.dateInput.value,

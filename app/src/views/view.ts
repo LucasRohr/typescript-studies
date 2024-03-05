@@ -1,3 +1,5 @@
+import { performanceLog } from '../decorators/index.js'
+
 export abstract class View<T> {
   protected element: HTMLElement
   private sanitize: boolean = false
@@ -22,6 +24,7 @@ export abstract class View<T> {
   // Force returnTemplate implementation on subclasses
   protected abstract returnTemplate(model: T): string
 
+  @performanceLog()
   public update(model: T): void {
     const template = this.returnTemplate(model)
 
