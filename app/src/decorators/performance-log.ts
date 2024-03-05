@@ -1,17 +1,20 @@
-export function performanceLog() {
+export function performanceLog(isSeconds: boolean = false) {
   return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
     const originalFunction = descriptor.value // store function reference
 
-    descriptor.value = (...args: any[]) => {
+    descriptor.value = function (...args: any[]) {
       const temp1 = performance.now()
 
       const originalReturn = originalFunction.apply(this, args) // calls original function and stores return
 
       const temp2 = performance.now()
-      const message = `${propertyKey} | execution time: ${(temp1 - temp2) / 1000} seconds`
+
+      const divider = isSeconds ? 1000 : 1
+      const timeLabel = isSeconds ? 'seconds' : 'ms'
+      const message = `${propertyKey} | execution time: ${(temp1 - temp2) / divider} ${timeLabel}`
       console.log(message)
 
-      originalReturn // returns original function return
+      return originalReturn // returns original function return
     }
 
     return descriptor
