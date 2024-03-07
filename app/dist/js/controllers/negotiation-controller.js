@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { domInjector, inspect, performanceLog } from '../decorators/index.js';
 import { NegotiationModel } from '../models/negotiation.js';
 import { NegotiationsHandler } from '../models/negotiations-handler.js';
+import { NegotiationsDataService } from '../services/index.js';
 import { DateUtils } from '../utils/index.js';
 import { NegotiationsView, ToastMessageView } from '../views/index.js';
 const NEGOTIATION_INPUT_IDS = Object.freeze({
@@ -18,6 +19,7 @@ const NEGOTIATIONS_VIEW_ID = '#negotiationsView';
 const TOAST_MESSAGE_VIEW_ID = '#toastMessageView';
 const TOAST_MESSAGE_TEXT = 'Negociação criada e incluida com sucesso!';
 const TOAST_WEEK_DAY_ERROR_TEXT = 'A data informada deve ser um dia útil!';
+const GET_NEGOTIATIONS_DATA_PATH = '/dados';
 export class NegotiationController {
     dateInput;
     quantityInput;
@@ -25,6 +27,7 @@ export class NegotiationController {
     negotiationsHandler = new NegotiationsHandler();
     negotiationView = new NegotiationsView(NEGOTIATIONS_VIEW_ID);
     toastMessageView = new ToastMessageView(TOAST_MESSAGE_VIEW_ID);
+    negotiationsDataService = new NegotiationsDataService(GET_NEGOTIATIONS_DATA_PATH);
     constructor() {
         this.negotiationView.update(this.negotiationsHandler);
     }
@@ -39,6 +42,13 @@ export class NegotiationController {
         else {
             this.toastMessageView.update(TOAST_WEEK_DAY_ERROR_TEXT);
         }
+    }
+    async importNegotiationsData() {
+        const negotiationsDataList = await this.negotiationsDataService.getNegotiationsData();
+        negotiationsDataList.forEach((negotiation) => {
+            this.negotiationsHandler.add(negotiation);
+        });
+        this.updateViews();
     }
     cleanForm() {
         this.dateInput.value = '';
