@@ -2,9 +2,8 @@ import { inspect, performanceLog } from '../decorators/index.js'
 
 export abstract class View<T> {
   protected element: HTMLElement
-  private sanitize: boolean = false
 
-  constructor(selector: string, sanitize?: boolean) {
+  constructor(selector: string) {
     const selectorElement = document.querySelector(selector)
 
     if (selectorElement) {
@@ -13,8 +12,6 @@ export abstract class View<T> {
       const errorMessage = `Selector ${selector} is invalid, please verify the element`
       throw new Error(errorMessage)
     }
-
-    this.sanitize = sanitize ?? false
   }
 
   public get getElement(): HTMLElement {
@@ -29,10 +26,6 @@ export abstract class View<T> {
   public update(model: T): void {
     const template = this.returnTemplate(model)
 
-    if (this.sanitize) {
-      this.element.innerHTML = template.replace(/<script>[\s\S]*?<\/script>/, '')
-    } else {
-      this.element.innerHTML = template
-    }
+    this.element.innerHTML = template
   }
 }

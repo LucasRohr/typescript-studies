@@ -1,14 +1,13 @@
-export function inspect() {
+export function sanitize() {
   return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const originalFunction = descriptor.value
 
     descriptor.value = function (...args: any[]) {
-      console.log(`=== Function: ${propertyKey} ===`)
-      console.log(`-> Params: ${JSON.stringify(args)}`)
-
       const originalReturn = originalFunction.apply(this, args)
 
-      console.log(`-> Return: ${JSON.stringify(originalReturn)}`)
+      if (typeof originalReturn === 'string') {
+        return originalReturn.replace(/<script>[\s\S]*?<\/script>/, '')
+      }
 
       return originalReturn
     }

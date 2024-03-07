@@ -1,3 +1,10 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+import { performanceLog } from '../decorators/index.js';
 import { NegotiationModel } from '../models/negotiation.js';
 import { NegotiationsHandler } from '../models/negotiations-handler.js';
 import { DateUtils } from '../utils/index.js';
@@ -16,7 +23,7 @@ export class NegotiationController {
     quantityInput;
     valueInput;
     negotiationsHandler = new NegotiationsHandler();
-    negotiationView = new NegotiationsView(NEGOTIATIONS_VIEW_ID, true);
+    negotiationView = new NegotiationsView(NEGOTIATIONS_VIEW_ID);
     toastMessageView = new ToastMessageView(TOAST_MESSAGE_VIEW_ID);
     constructor() {
         this.dateInput = document.querySelector(NEGOTIATION_INPUT_IDS.DATE);
@@ -47,3 +54,6 @@ export class NegotiationController {
         this.toastMessageView.update(TOAST_MESSAGE_TEXT);
     }
 }
+__decorate([
+    performanceLog()
+], NegotiationController.prototype, "add", null);

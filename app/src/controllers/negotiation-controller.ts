@@ -21,7 +21,7 @@ export class NegotiationController {
   private quantityInput: HTMLInputElement
   private valueInput: HTMLInputElement
   private negotiationsHandler: NegotiationsHandler = new NegotiationsHandler()
-  private negotiationView: NegotiationsView = new NegotiationsView(NEGOTIATIONS_VIEW_ID, true)
+  private negotiationView: NegotiationsView = new NegotiationsView(NEGOTIATIONS_VIEW_ID)
   private toastMessageView: ToastMessageView = new ToastMessageView(TOAST_MESSAGE_VIEW_ID)
 
   constructor() {

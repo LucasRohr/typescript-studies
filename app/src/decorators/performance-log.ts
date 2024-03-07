@@ -1,5 +1,5 @@
 export function performanceLog(isSeconds: boolean = false) {
-  return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const originalFunction = descriptor.value // store function reference
 
     descriptor.value = function (...args: any[]) {

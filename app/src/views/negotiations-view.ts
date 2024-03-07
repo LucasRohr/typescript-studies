@@ -1,3 +1,4 @@
+import { sanitize } from '../decorators/sanitize.js'
 import { NegotiationsHandler } from '../models/negotiations-handler.js'
 import { View } from './view.js'
 
@@ -16,6 +17,7 @@ export class NegotiationsView extends View<NegotiationsHandler> {
       .join('')
   }
 
+  @sanitize()
   protected returnTemplate(negotiationsHandler: NegotiationsHandler): string {
     // Alternate date format solution: new Intl.DateTimeFormat().format(negotiation.date)
     return `
