@@ -4,7 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { performanceLog } from '../decorators/index.js';
+import { domInjector, inspect, performanceLog } from '../decorators/index.js';
 import { NegotiationModel } from '../models/negotiation.js';
 import { NegotiationsHandler } from '../models/negotiations-handler.js';
 import { DateUtils } from '../utils/index.js';
@@ -26,9 +26,6 @@ export class NegotiationController {
     negotiationView = new NegotiationsView(NEGOTIATIONS_VIEW_ID);
     toastMessageView = new ToastMessageView(TOAST_MESSAGE_VIEW_ID);
     constructor() {
-        this.dateInput = document.querySelector(NEGOTIATION_INPUT_IDS.DATE);
-        this.quantityInput = document.querySelector(NEGOTIATION_INPUT_IDS.QUANTITY);
-        this.valueInput = document.querySelector(NEGOTIATION_INPUT_IDS.VALUE);
         this.negotiationView.update(this.negotiationsHandler);
     }
     add() {
@@ -55,5 +52,15 @@ export class NegotiationController {
     }
 }
 __decorate([
+    domInjector(NEGOTIATION_INPUT_IDS.DATE)
+], NegotiationController.prototype, "dateInput", void 0);
+__decorate([
+    domInjector(NEGOTIATION_INPUT_IDS.QUANTITY)
+], NegotiationController.prototype, "quantityInput", void 0);
+__decorate([
+    domInjector(NEGOTIATION_INPUT_IDS.VALUE)
+], NegotiationController.prototype, "valueInput", void 0);
+__decorate([
+    inspect(),
     performanceLog()
 ], NegotiationController.prototype, "add", null);

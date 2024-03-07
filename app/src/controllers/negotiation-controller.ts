@@ -1,4 +1,4 @@
-import { performanceLog } from '../decorators/index.js'
+import { domInjector, inspect, performanceLog } from '../decorators/index.js'
 import { NegotiationModel } from '../models/negotiation.js'
 import { NegotiationsHandler } from '../models/negotiations-handler.js'
 import { DateUtils } from '../utils/index.js'
@@ -17,23 +17,26 @@ const TOAST_MESSAGE_TEXT = 'Negociação criada e incluida com sucesso!'
 const TOAST_WEEK_DAY_ERROR_TEXT = 'A data informada deve ser um dia útil!'
 
 export class NegotiationController {
+  // Init class properties with DOM element values using decorators
+
+  @domInjector(NEGOTIATION_INPUT_IDS.DATE)
   private dateInput: HTMLInputElement
+
+  @domInjector(NEGOTIATION_INPUT_IDS.QUANTITY)
   private quantityInput: HTMLInputElement
+
+  @domInjector(NEGOTIATION_INPUT_IDS.VALUE)
   private valueInput: HTMLInputElement
+
   private negotiationsHandler: NegotiationsHandler = new NegotiationsHandler()
   private negotiationView: NegotiationsView = new NegotiationsView(NEGOTIATIONS_VIEW_ID)
   private toastMessageView: ToastMessageView = new ToastMessageView(TOAST_MESSAGE_VIEW_ID)
 
   constructor() {
-    // Init class instance with DOM element values
-
-    this.dateInput = document.querySelector(NEGOTIATION_INPUT_IDS.DATE) as HTMLInputElement
-    this.quantityInput = document.querySelector(NEGOTIATION_INPUT_IDS.QUANTITY) as HTMLInputElement
-    this.valueInput = document.querySelector(NEGOTIATION_INPUT_IDS.VALUE) as HTMLInputElement
-
     this.negotiationView.update(this.negotiationsHandler)
   }
 
+  @inspect()
   @performanceLog()
   public add(): void {
     const negotiation = NegotiationModel.createNegotiation(
