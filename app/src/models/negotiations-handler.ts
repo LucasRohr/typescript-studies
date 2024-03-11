@@ -1,6 +1,7 @@
+import { Printable } from '../interfaces/index.js'
 import { NegotiationModel } from './negotiation.js'
 
-export class NegotiationsHandler {
+export class NegotiationsHandler implements Printable {
   // Alternate declaration: Array<NegotiationModel>
   private negotiations: NegotiationModel[] = []
 
@@ -15,5 +16,9 @@ export class NegotiationsHandler {
   // Alternate return type: ReadonlyArray<NegotiationModel>
   public getNegotiations(): readonly NegotiationModel[] {
     return this.negotiations
+  }
+
+  public toString(): string {
+    return JSON.stringify(this.negotiations, null, 2)
   }
 }

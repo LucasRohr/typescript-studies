@@ -9,4 +9,7 @@ export class NegotiationsHandler {
     getNegotiations() {
         return this.negotiations;
     }
+    toString() {
+        return JSON.stringify(this.negotiations, null, 2);
+    }
 }

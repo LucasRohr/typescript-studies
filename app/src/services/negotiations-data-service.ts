@@ -1,3 +1,4 @@
+import { NegotiationDailyDataInterface } from '../interfaces/index.js'
 import { NegotiationModel } from '../models/index.js'
 
 const BASE_URL = 'http://localhost:8080'
@@ -13,7 +14,7 @@ export class NegotiationsDataService {
     const response = await fetch(this.path)
 
     if (response.ok) {
-      const negotiationsData: any[] = await response.json()
+      const negotiationsData: NegotiationDailyDataInterface[] = await response.json()
 
       if (negotiationsData) {
         const mappedNegotiations = negotiationsData.map(
