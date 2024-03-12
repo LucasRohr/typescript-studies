@@ -40,3 +40,4 @@ export class NegotiationModel {
         return this._quantity * this._value;
     }
 }
+//# sourceMappingURL=negotiation.js.map

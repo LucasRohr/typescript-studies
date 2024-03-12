@@ -10,3 +10,4 @@ importButton?.addEventListener('click', (event) => {
     event.preventDefault();
     controller.importNegotiationsData();
 });
+//# sourceMappingURL=app.js.map

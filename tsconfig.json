@@ -8,6 +8,7 @@
         "strictNullChecks": true,
         "experimentalDecorators": true,
         "moduleResolution": "node",
+        "sourceMap": true,
     },
     "include": [
         "app/src/**/*"

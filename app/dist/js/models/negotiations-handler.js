@@ -16,3 +16,4 @@ export class NegotiationsHandler {
         return this.negotiations.every((negotiation) => negotiations.negotiations.includes(negotiation));
     }
 }
+//# sourceMappingURL=negotiations-handler.js.map

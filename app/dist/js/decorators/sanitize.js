@@ -11,3 +11,4 @@ export function sanitize() {
         return descriptor;
     };
 }
+//# sourceMappingURL=sanitize.js.map

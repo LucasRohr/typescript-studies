@@ -4,3 +4,4 @@ export class ToastMessageView extends View {
         return `<p class="alert alert-info"> ${message} </p>`;
     }
 }
+//# sourceMappingURL=toast-message-view.js.map

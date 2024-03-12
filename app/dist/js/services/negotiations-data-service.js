@@ -22,3 +22,4 @@ export class NegotiationsDataService {
         }
     }
 }
+//# sourceMappingURL=negotiations-data-service.js.map

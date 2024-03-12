@@ -18,3 +18,4 @@ export class View {
         this.element.innerHTML = template;
     }
 }
+//# sourceMappingURL=view.js.map

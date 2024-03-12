@@ -14,3 +14,4 @@ export function performanceLog(isSeconds = false) {
         return descriptor;
     };
 }
+//# sourceMappingURL=performance-log.js.map

@@ -5,3 +5,4 @@ export class DateUtils {
         return weekDay > WeekDays.SUNDAY && weekDay < WeekDays.SATURDAY;
     }
 }
+//# sourceMappingURL=date-utils.js.map
