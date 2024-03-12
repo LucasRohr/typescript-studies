@@ -1,6 +1,6 @@
-import { Printable } from '../interfaces/index.js'
+import { ModelInterface } from '../interfaces/index.js'
 
-export class NegotiationModel implements Printable {
+export class NegotiationModel implements ModelInterface<NegotiationModel> {
   constructor(
     private _value: number,
     private _date: Date,
@@ -26,6 +26,14 @@ export class NegotiationModel implements Printable {
       Value: ${this.value}
       Quantity: ${this.quantity}
     `
+  }
+
+  public compare(negotiation: NegotiationModel): boolean {
+    return (
+      this.date.getDate() === negotiation.date.getDate() &&
+      this.date.getMonth() === negotiation.date.getMonth() &&
+      this.date.getFullYear() === negotiation.date.getFullYear()
+    )
   }
 
   get value(): number {

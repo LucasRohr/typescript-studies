@@ -21,6 +21,11 @@ export class NegotiationModel {
       Quantity: ${this.quantity}
     `;
     }
+    compare(negotiation) {
+        return (this.date.getDate() === negotiation.date.getDate() &&
+            this.date.getMonth() === negotiation.date.getMonth() &&
+            this.date.getFullYear() === negotiation.date.getFullYear());
+    }
     get value() {
         return this._value;
     }

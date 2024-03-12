@@ -12,4 +12,7 @@ export class NegotiationsHandler {
     toString() {
         return JSON.stringify(this.negotiations, null, 2);
     }
+    compare(negotiations) {
+        return this.negotiations.every((negotiation) => negotiations.negotiations.includes(negotiation));
+    }
 }

@@ -45,7 +45,10 @@ export class NegotiationController {
     }
     async importNegotiationsData() {
         const negotiationsDataList = await this.negotiationsDataService.getNegotiationsData();
-        negotiationsDataList.forEach((negotiation) => {
+        const filteredNegotiations = negotiationsDataList.filter((dayNegotiation) => !this.negotiationsHandler
+            .getNegotiations()
+            .some((negotiation) => negotiation.compare(dayNegotiation)));
+        filteredNegotiations.forEach((negotiation) => {
             this.negotiationsHandler.add(negotiation);
         });
         this.updateViews();

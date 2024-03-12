@@ -1,7 +1,7 @@
-import { Printable } from '../interfaces/index.js'
+import { ModelInterface } from '../interfaces/index.js'
 import { NegotiationModel } from './negotiation.js'
 
-export class NegotiationsHandler implements Printable {
+export class NegotiationsHandler implements ModelInterface<NegotiationsHandler> {
   // Alternate declaration: Array<NegotiationModel>
   private negotiations: NegotiationModel[] = []
 
@@ -20,5 +20,9 @@ export class NegotiationsHandler implements Printable {
 
   public toString(): string {
     return JSON.stringify(this.negotiations, null, 2)
+  }
+
+  public compare(negotiations: NegotiationsHandler): boolean {
+    return this.negotiations.every((negotiation) => negotiations.negotiations.includes(negotiation))
   }
 }
