@@ -8,14 +8,18 @@
     "server": "lite-server --baseDir=app",
     "start": "concurrently \"npm run watch\" \"npm run server\"",
     "compile": "tsc",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "build-dev": "webpack --mode development --config webpack.config.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^6.0.0",
+    "html-webpack-plugin": "^5.6.0",
     "lite-server": "^2.6.1",
     "prettier": "3.2.5",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
   }
 }
