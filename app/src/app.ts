@@ -1,4 +1,5 @@
 import { NegotiationController } from './controllers/index.js'
+import 'bootstrap/dist/css/bootstrap.css'
 
 const controller = new NegotiationController()
 
