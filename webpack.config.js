@@ -27,7 +27,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: 'app.html',
+      filename: 'index.html',
       template: './app/dist/index.html',
       hash: true,
     }),
@@ -36,4 +36,10 @@ module.exports = {
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
   ],
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname, 'app/build'),
+    },
+    port: 3000,
+  },
 }
