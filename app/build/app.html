@@ -1,1 +1,40 @@
-<!doctype html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Negociações</title><script defer="defer" src="app.bundle.js?f339d04e34af332c03e0"></script><link href="style.css?f339d04e34af332c03e0" rel="stylesheet"></head><body class="container"><h1 class="text-center">Negociações</h1><div id="toastMessageView"></div><form class="form"><div class="form-group"><label for="data">Data</label> <input type="date" id="data" class="form-control" required autofocus/></div><div class="form-group"><label for="quantidade">Quantidade</label> <input type="number" min="1" step="1" id="quantidade" class="form-control" value="1" required/></div><div class="form-group"><label for="valor">Valor</label> <input id="valor" type="number" class="form-control" min="0.01" step="0.01" value="0.0" required/></div><button class="btn btn-primary" type="submit">Incluir</button> <button id="import-button" class="btn btn-primary">Importar</button></form><br><br><div id="negotiationsView"></div><script type="module" src="./js/app.js"></script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Negociações</title>
+<script defer src="app.bundle.js?6614f07b7a1f5e3f9d3a"></script><link href="style.css?6614f07b7a1f5e3f9d3a" rel="stylesheet"></head>
+
+<body class="container">
+
+    <h1 class="text-center">Negociações</h1>
+
+    <div id="toastMessageView"></div>
+
+    <form class="form">
+
+        <div class="form-group">
+            <label for="data">Data</label>
+            <input type="date" id="data" class="form-control" required autofocus/>
+        </div>
+
+        <div class="form-group">
+            <label for="quantidade">Quantidade</label>
+            <input type="number" min="1" step="1" id="quantidade" class="form-control" value="1" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="valor">Valor</label>
+            <input id="valor" type="number" class="form-control"  min="0.01" step="0.01" value="0.0" required />
+        </div>
+
+        <button class="btn btn-primary" type="submit">Incluir</button>
+        <button id="import-button" class="btn btn-primary" >Importar</button>
+    </form>
+    <br>
+    <br>
+    <div id="negotiationsView"></div>
+    <script type="module" src="./js/app.js" ></script>
+</body>
+</html>

@@ -7,7 +7,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { domInjector, inspect, performanceLog } from '../decorators/index.js';
 import { NegotiationModel } from '../models/negotiation.js';
 import { NegotiationsHandler } from '../models/negotiations-handler.js';
-import { NegotiationsDataService } from '../services/index.js';
 import { DateUtils } from '../utils/index.js';
 import { NegotiationsView, ToastMessageView } from '../views/index.js';
 const NEGOTIATION_INPUT_IDS = Object.freeze({
@@ -27,7 +26,6 @@ export class NegotiationController {
     negotiationsHandler = new NegotiationsHandler();
     negotiationView = new NegotiationsView(NEGOTIATIONS_VIEW_ID);
     toastMessageView = new ToastMessageView(TOAST_MESSAGE_VIEW_ID);
-    negotiationsDataService = new NegotiationsDataService(GET_NEGOTIATIONS_DATA_PATH);
     constructor() {
         this.negotiationView.update(this.negotiationsHandler);
     }
@@ -44,7 +42,9 @@ export class NegotiationController {
         }
     }
     async importNegotiationsData() {
-        const negotiationsDataList = await this.negotiationsDataService.getNegotiationsData();
+        const dataServiceModule = await import('../services/negotiations-data-service.js');
+        const dataService = new dataServiceModule.NegotiationsDataService(GET_NEGOTIATIONS_DATA_PATH);
+        const negotiationsDataList = await dataService.getNegotiationsData();
         const filteredNegotiations = negotiationsDataList.filter((dayNegotiation) => !this.negotiationsHandler
             .getNegotiations()
             .some((negotiation) => negotiation.compare(dayNegotiation)));
