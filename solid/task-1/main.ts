@@ -1,19 +1,29 @@
 import Collaborator from './models/collaborator'
-import CompanySystem from './models/company-system'
+import CollaboratorBoard from './models/collaborator-board'
 import { Positions } from './enum/positions'
+import { ReportGenerator } from './models/report-generator'
+import { SalaryCalculator } from './models/salary-calculator'
+import { Payment } from './models/payment'
 
-const companySystem = new CompanySystem()
+const collaboratorBoard = new CollaboratorBoard()
+
+const salaryCalculatorService = new SalaryCalculator()
+const paymentService = new Payment(salaryCalculatorService)
+const reportGenerator = new ReportGenerator(
+  collaboratorBoard.collaborators,
+  salaryCalculatorService
+)
 
 const collaborator1 = new Collaborator('José', Positions.Intern)
 const collaborator2 = new Collaborator('Maria', Positions.Junior)
 const collaborator3 = new Collaborator('João', Positions.MidLevel)
 
-companySystem.hireCollaborator(collaborator1)
-companySystem.hireCollaborator(collaborator2)
-companySystem.hireCollaborator(collaborator3)
+collaboratorBoard.hireCollaborator(collaborator1)
+collaboratorBoard.hireCollaborator(collaborator2)
+collaboratorBoard.hireCollaborator(collaborator3)
 
-console.log(companySystem.generateJsonReport())
+console.log(reportGenerator.generateJson())
 
 console.log(collaborator1)
-companySystem.payCollaborator(collaborator1)
+paymentService.pay(collaborator1)
 console.log(collaborator1)
