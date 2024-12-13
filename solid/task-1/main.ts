@@ -8,7 +8,9 @@ import { Payment } from './models/payment'
 const collaboratorBoard = new CollaboratorBoard()
 
 const salaryCalculatorService = new SalaryCalculator()
+
 const paymentService = new Payment(salaryCalculatorService)
+
 const reportGenerator = new ReportGenerator(
   collaboratorBoard.collaborators,
   salaryCalculatorService
