@@ -1,23 +1,20 @@
 import { FullTimeEmployeeInterface } from './interfaces/full-time-employee-interface'
-import { StudentEmployeeInterface } from './interfaces/student-employee-interface'
+import { ResearcherInterface } from './interfaces/researcher-interface'
 import { FullTimeEmployeeModel } from './models/full-time-employee-model'
-import { StudentEmployeeModel } from './models/student-employee-model'
+import { ResearcherModel } from './models/researcher-model'
 
 const fullTimeEmployee: FullTimeEmployeeInterface = new FullTimeEmployeeModel('João', 40, 2400)
-const studentEmployee: StudentEmployeeInterface = new StudentEmployeeModel(
-  'Enzo',
-  20,
-  fullTimeEmployee
-)
+const researcher: ResearcherInterface = new ResearcherModel('Enzo', 20, fullTimeEmployee)
 
-// Full Time
+// Full Time Employee
 console.log('name:', fullTimeEmployee.name)
 console.log('gross salary:', fullTimeEmployee.salary)
 console.log('net salary:', fullTimeEmployee.calculateSalary())
 console.log('PS salary:', fullTimeEmployee.calculateProfitSharing(2.5), '\n')
 
-// Student
-console.log('name:', studentEmployee.name)
-console.log('workload:', studentEmployee.workload)
-console.log('advisor:', studentEmployee.advisor.name)
-studentEmployee.writeReport()
+// Researcher
+console.log('name:', researcher.name)
+console.log('workload:', researcher.workload)
+console.log('advisor:', researcher.advisor.name)
+researcher.research()
+researcher.writeReport()

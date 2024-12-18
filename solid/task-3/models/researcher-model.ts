@@ -1,14 +1,14 @@
 import { FullTimeEmployeeInterface } from '../interfaces/full-time-employee-interface'
-import { StudentEmployeeInterface } from '../interfaces/student-employee-interface'
+import { ResearcherInterface } from '../interfaces/researcher-interface'
 
-export class StudentEmployeeModel implements StudentEmployeeInterface {
+export class ResearcherModel implements ResearcherInterface {
   constructor(
     public name: string,
     public workload: number,
     public advisor: FullTimeEmployeeInterface
   ) {}
 
-  work(): void {
+  research(): void {
     console.log(
       `I'm ${this.name} and I reasearch ${this.workload} hours per week to fullfil it in my graduation`
     )
