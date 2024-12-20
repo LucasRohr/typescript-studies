@@ -2,7 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var client_controller_1 = require("./controller/client-controller");
 var client_entity_1 = require("./entities/client-entity");
-var clientController = new client_controller_1.ClientController();
+var postgres_repository_1 = require("./repositories/postgres-repository");
+var clientController = new client_controller_1.ClientController(new postgres_repository_1.PostgresRepository());
 var client1 = new client_entity_1.ClientEntity(0, 'João', 'joao@mail.com');
 var client2 = new client_entity_1.ClientEntity(0, 'Kleber', 'kleber@mail.com');
 clientController.addClient(client1);

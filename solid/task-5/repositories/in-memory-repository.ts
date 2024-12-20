@@ -1,6 +1,7 @@
 import { ClientEntity } from '../entities/client-entity'
+import { ClientRepositoryInterface } from './interfaces/client-repository-interface'
 
-export class InMemoryRepository {
+export class InMemoryRepository implements ClientRepositoryInterface {
   private db: ClientEntity[]
 
   constructor() {

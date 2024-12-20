@@ -1,18 +1,19 @@
 import { ClientEntity } from '../entities/client-entity'
+import { ClientRepositoryInterface } from './interfaces/client-repository-interface'
 
 // Fake PostgreSQL DB representation using a class
-export class PostgresRepository {
+export class PostgresRepository implements ClientRepositoryInterface {
   private db: Record<number, ClientEntity>
 
   constructor() {
     this.db = {}
   }
 
-  add(client: ClientEntity) {
+  addClient(client: ClientEntity) {
     this.db[client.getId] = client
   }
 
-  list() {
+  getClients() {
     const clients: ClientEntity[] = []
 
     for (const chave in this.db) {

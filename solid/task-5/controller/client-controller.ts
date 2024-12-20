@@ -1,12 +1,8 @@
 import { ClientEntity } from '../entities/client-entity'
-import { InMemoryRepository } from '../repositories/InMemoryRepository'
+import { ClientRepositoryInterface } from '../repositories/interfaces/client-repository-interface'
 
 export class ClientController {
-  repository: InMemoryRepository
-
-  constructor() {
-    this.repository = new InMemoryRepository()
-  }
+  constructor(private repository: ClientRepositoryInterface) {}
 
   addClient(cliente: ClientEntity) {
     this.repository.addClient(cliente)
