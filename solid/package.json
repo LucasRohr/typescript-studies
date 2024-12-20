@@ -7,11 +7,11 @@
     "node": ">=20.8.0"
   },
   "scripts": {
-    "task-1": "npx tsc task-1/main.ts --outDir task-1/dist && node task-1/dist/main.js",
-    "task-2": "npx tsc task-2/main.ts --outDir task-2/dist && node task-2/dist/main.js",
-    "task-3": "npx tsc task-3/main.ts --outDir task-3/dist && node task-3/dist/main.js",
-    "task-4": "npx tsc task-4/main.ts --outDir task-4/dist && node task-4/dist/main.js",
-    "task-5": "npx tsc task-5/main.ts --outDir task-5/dist && node task-5/dist/main.js"
+    "principle-1": "npx tsc principle-1-srp/main.ts --outDir principle-1-srp/dist && node principle-1-srp/dist/main.js",
+    "principle-2": "npx tsc principle-2-ocp/main.ts --outDir principle-2-ocp/dist && node principle-2-ocp/dist/main.js",
+    "principle-3": "npx tsc principle-3-lsp/main.ts --outDir principle-3-lsp/dist && node principle-3-lsp/dist/main.js",
+    "principle-4": "npx tsc principle-4-isp/main.ts --outDir principle-4-isp/dist && node principle-4-isp/dist/main.js",
+    "principle-5": "npx tsc principle-5-dip/main.ts --outDir principle-5-dip/dist && node principle-5-dip/dist/main.js"
   },
   "dependencies": {
     "typescript": "^5.3.2"
