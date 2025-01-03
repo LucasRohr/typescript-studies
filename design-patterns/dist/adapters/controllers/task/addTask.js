@@ -5,7 +5,8 @@ const invalid_param_error_1 = require("../../presentations/api/errors/invalid-pa
 const missing_param_error_1 = require("../../presentations/api/errors/missing-param-error");
 const httpResponses_1 = require("../../presentations/api/httpResponses/httpResponses");
 class AddTaskController {
-    constructor(dateValidator) {
+    constructor(addTaskUseCase, dateValidator) {
+        this.addTaskUseCase = addTaskUseCase;
         this.dateValidator = dateValidator;
     }
     async handle(httpRequest) {
@@ -21,7 +22,7 @@ class AddTaskController {
         if (!isValid) {
             return (0, httpResponses_1.badRequest)(new invalid_param_error_1.InvalidParamError("date"));
         }
-        const task = { title, description, date };
+        const task = await this.addTaskUseCase.add({ title, description, date });
         return (0, httpResponses_1.created)(task);
     }
 }

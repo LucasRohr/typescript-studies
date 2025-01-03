@@ -18,5 +18,11 @@ class MongoManager {
             this.client = new mongodb_1.MongoClient(url);
         }
     }
+    getCollection(name) {
+        if (!this.client) {
+            throw new Error("Client not connected");
+        }
+        return this.client.db().collection(name);
+    }
 }
 exports.MongoManager = MongoManager;
