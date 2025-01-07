@@ -9,31 +9,24 @@ import {
 import { Controller } from "../../interfaces/controller";
 import { DateValidator } from "../../interfaces/dateValidator";
 import { AddTask } from "../../../usecases/addTask";
+import { Validation } from "../../interfaces/validation";
 
 export class AddTaskController implements Controller {
   constructor(
     private readonly addTaskUseCase: AddTask,
-    private readonly dateValidator: DateValidator
+    private readonly validation: Validation
   ) {}
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const requiredFields = ["title", "description", "date"];
+      const error = this.validation.validate(httpRequest.body);
+
+      if (error) {
+        return badRequest(error);
+      }
+
       const requestBody = httpRequest.body;
-
-      for (const field of requiredFields) {
-        if (!requestBody[field]) {
-          return badRequest(new MissingParamError(field));
-        }
-      }
-
       const { title, description, date } = requestBody;
-
-      const isValid = this.dateValidator.isValid(date);
-
-      if (!isValid) {
-        return badRequest(new InvalidParamError("date"));
-      }
 
       const task = await this.addTaskUseCase.add({ title, description, date });
 

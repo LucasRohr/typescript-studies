@@ -1,28 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AddTaskController = void 0;
-const invalid_param_error_1 = require("../../presentations/api/errors/invalid-param-error");
-const missing_param_error_1 = require("../../presentations/api/errors/missing-param-error");
 const httpResponses_1 = require("../../presentations/api/httpResponses/httpResponses");
 class AddTaskController {
-    constructor(addTaskUseCase, dateValidator) {
+    constructor(addTaskUseCase, validation) {
         this.addTaskUseCase = addTaskUseCase;
-        this.dateValidator = dateValidator;
+        this.validation = validation;
     }
     async handle(httpRequest) {
         try {
-            const requiredFields = ["title", "description", "date"];
+            const error = this.validation.validate(httpRequest.body);
+            if (error) {
+                return (0, httpResponses_1.badRequest)(error);
+            }
             const requestBody = httpRequest.body;
-            for (const field of requiredFields) {
-                if (!requestBody[field]) {
-                    return (0, httpResponses_1.badRequest)(new missing_param_error_1.MissingParamError(field));
-                }
-            }
             const { title, description, date } = requestBody;
-            const isValid = this.dateValidator.isValid(date);
-            if (!isValid) {
-                return (0, httpResponses_1.badRequest)(new invalid_param_error_1.InvalidParamError("date"));
-            }
             const task = await this.addTaskUseCase.add({ title, description, date });
             return (0, httpResponses_1.created)(task);
         }
