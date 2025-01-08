@@ -7,7 +7,6 @@ import {
   serverError,
 } from "../../presentations/api/httpResponses/httpResponses";
 import { Controller } from "../../interfaces/controller";
-import { DateValidator } from "../../interfaces/dateValidator";
 import { AddTask } from "../../../usecases/addTask";
 import { Validation } from "../../interfaces/validation";
 

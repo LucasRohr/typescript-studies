@@ -1,9 +1,11 @@
+import { ServerError } from "../../../adapters/presentations/api/errors/server-error";
 import { Task } from "../../../entities/task";
 import { AddATaskModel } from "../../../usecases/addTask";
-import { AddTaskRepository } from "../../../usecases/repository/addTaskRepository";
+import { TaskRepository } from "../../../usecases/repository/taskRepository";
 import { MongoManager } from "../../config/mongoManager";
+import { ObjectId } from "mongodb";
 
-export class TaskMongoRepository implements AddTaskRepository {
+export class TaskMongoRepository implements TaskRepository {
   async add(taskData: AddATaskModel): Promise<Task> {
     const tasksCollection = MongoManager.getInstance().getCollection("tasks");
 
@@ -23,5 +25,17 @@ export class TaskMongoRepository implements AddTaskRepository {
     };
 
     return task;
+  }
+
+  async delete(taskId: string): Promise<void | Error> {
+    const tasksCollection = MongoManager.getInstance().getCollection("tasks");
+
+    const dbTask = await tasksCollection.findOne({ _id: new ObjectId(taskId) });
+
+    if (!dbTask) {
+      return new ServerError("Task not found");
+    }
+
+    await tasksCollection.deleteOne({ _id: dbTask._id });
   }
 }

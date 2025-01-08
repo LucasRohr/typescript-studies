@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.noContent = exports.created = exports.serverError = exports.badRequest = void 0;
+exports.deleted = exports.noContent = exports.created = exports.serverError = exports.badRequest = void 0;
 const server_error_1 = require("../errors/server-error");
 const badRequest = (error) => ({
     statusCode: 400,
@@ -21,3 +21,8 @@ const noContent = () => ({
     statusCode: 204,
 });
 exports.noContent = noContent;
+const deleted = (data) => ({
+    statusCode: 200,
+    body: data,
+});
+exports.deleted = deleted;
