@@ -1,7 +1,10 @@
 import { DeleteTask } from "../../../usecases/deleteTask";
-import { Controller } from "../../interfaces/controller";
-import { HttpRequest, HttpResponse } from "../../interfaces/http";
-import { Validation } from "../../interfaces/validation";
+import {
+  HttpRequest,
+  HttpResponse,
+  Validation,
+  Controller,
+} from "../../interfaces";
 import {
   badRequest,
   deleted,

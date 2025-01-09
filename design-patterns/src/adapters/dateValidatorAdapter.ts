@@ -1,6 +1,6 @@
 import validator from "validator";
 
-import { DateValidator } from "./interfaces/dateValidator";
+import { DateValidator } from "./interfaces";
 
 export class DateValidatorAdapter implements DateValidator {
   isValid(date: string): boolean {

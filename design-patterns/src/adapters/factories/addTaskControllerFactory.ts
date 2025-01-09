@@ -1,8 +1,10 @@
-import { DbAddTask } from "../../dataSources/db/dbAddTask";
-import { ErrorLogMongoRepository } from "../../dataSources/db/repository/errorLogMongoRepository";
-import { TaskMongoRepository } from "../../dataSources/db/repository/taskMongoRepository";
-import { AddTask } from "../../usecases/addTask";
-import { TaskRepository } from "../../usecases/repository/taskRepository";
+import { DbAddTask } from "../../dataSources/db";
+import {
+  ErrorLogMongoRepository,
+  TaskMongoRepository,
+} from "../../dataSources/db/repository";
+import { AddTask } from "../../usecases";
+import { TaskRepository } from "../../usecases/repository";
 import { AddTaskController } from "../controllers/task/addTask";
 import { ErrorLogControllerDecorator } from "../decorators/errorLogControllerDecorator";
 import { addTaskValidationCompositeFactory } from "./addTaskValidationCompositeFactory";

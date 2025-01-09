@@ -1,14 +1,15 @@
-import { HttpRequest, HttpResponse } from "../../interfaces/http";
-import { InvalidParamError } from "../../presentations/api/errors/invalid-param-error";
-import { MissingParamError } from "../../presentations/api/errors/missing-param-error";
 import {
   badRequest,
   created,
   serverError,
 } from "../../presentations/api/httpResponses/httpResponses";
-import { Controller } from "../../interfaces/controller";
-import { AddTask } from "../../../usecases/addTask";
-import { Validation } from "../../interfaces/validation";
+import {
+  Controller,
+  Validation,
+  HttpRequest,
+  HttpResponse,
+} from "../../interfaces";
+import { AddTask } from "../../../usecases";
 
 export class AddTaskController implements Controller {
   constructor(

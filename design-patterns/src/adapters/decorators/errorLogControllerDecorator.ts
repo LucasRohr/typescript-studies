@@ -1,6 +1,5 @@
-import { ErrorLogRepository } from "../../usecases/repository/errorLogRepository";
-import { Controller } from "../interfaces/controller";
-import { HttpRequest, HttpResponse } from "../interfaces/http";
+import { ErrorLogRepository } from "../../usecases/repository";
+import { HttpRequest, HttpResponse, Controller } from "../interfaces";
 
 export class ErrorLogControllerDecorator implements Controller {
   constructor(
