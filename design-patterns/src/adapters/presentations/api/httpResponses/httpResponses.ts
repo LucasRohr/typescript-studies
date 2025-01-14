@@ -24,3 +24,8 @@ export const deleted = (data: any): HttpResponse => ({
   statusCode: 200,
   body: data,
 });
+
+export const ok = (data: any): HttpResponse => ({
+  statusCode: 200,
+  body: data,
+});
