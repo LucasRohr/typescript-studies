@@ -63,4 +63,34 @@ describe("Db List Tasks", () => {
     // Assert
     expect(listSpy).toHaveBeenCalled();
   });
+
+  it("Should return a list of tasks on success", async () => {
+    // Arrange
+    const { dbListTasks, taskRepositoryStub } = makeSut();
+
+    jest
+      .spyOn(taskRepositoryStub, "list")
+      .mockReturnValueOnce(Promise.resolve(makeTaskListMock()));
+
+    // Act
+    const response = await dbListTasks.list();
+
+    // Assert
+    expect(response).toEqual(makeTaskListMock());
+  });
+
+  it("Should throw an error is TaskRepository fails", async () => {
+    // Arrange
+    const { dbListTasks, taskRepositoryStub } = makeSut();
+
+    jest
+      .spyOn(taskRepositoryStub, "list")
+      .mockReturnValueOnce(Promise.reject(new Error()));
+
+    // Act
+    const responsePromise = dbListTasks.list();
+
+    // Assert
+    await expect(responsePromise).rejects.toThrow();
+  });
 });

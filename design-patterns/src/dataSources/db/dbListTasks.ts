@@ -6,8 +6,8 @@ export class DbListTasks implements ListTasks {
   constructor(private readonly taskRepository: TaskRepository) {}
 
   async list(): Promise<Task[]> {
-    await this.taskRepository.list();
+    const tasks = await this.taskRepository.list();
 
-    return [];
+    return tasks;
   }
 }

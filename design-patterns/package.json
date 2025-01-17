@@ -13,6 +13,7 @@
     "test:verbose": "jest --passWithNoTests --verbose --runInBand"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^4.3.2",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.14",
     "@types/node": "^20.11.20",
@@ -24,9 +25,9 @@
     "eslint-plugin-promise": "^6.1.1",
     "jest": "^29.7.0",
     "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
     "tsc-watch": "^6.0.4",
-    "typescript": "^5.3.3",
-    "ts-node": "^10.9.2"
+    "typescript": "^5.3.3"
   },
   "dependencies": {
     "express": "^4.18.2",
