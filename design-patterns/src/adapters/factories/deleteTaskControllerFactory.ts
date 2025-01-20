@@ -7,9 +7,10 @@ import { DeleteTask } from "../../usecases/deleteTask";
 import { TaskRepository } from "../../usecases/repository/taskRepository";
 import { DeleteTaskController } from "../controllers/task/deleteTask";
 import { ErrorLogControllerDecorator } from "../decorators/errorLogControllerDecorator";
+import { Controller } from "../interfaces";
 import { deleteTaskValidationCompositeFactory } from "./deleteTaskValidationCompositeFactory";
 
-export const deleteTaskControllerFactory = (): ErrorLogControllerDecorator => {
+export const deleteTaskControllerFactory = (): Controller => {
   const taskMongoRepository: TaskRepository = new TaskMongoRepository();
   const deleteTaskUseCase: DeleteTask = new DbDeleteTask(taskMongoRepository);
 
