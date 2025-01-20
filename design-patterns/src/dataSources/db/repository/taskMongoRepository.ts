@@ -38,4 +38,23 @@ export class TaskMongoRepository implements TaskRepository {
 
     await tasksCollection.deleteOne({ _id: dbTask._id });
   }
+
+  async list(): Promise<Task[]> {
+    const tasksCollection = MongoManager.getInstance().getCollection("tasks");
+
+    const dbTasks = await tasksCollection.find().toArray();
+
+    if (!dbTasks) {
+      throw new Error("Tasks not found");
+    }
+
+    const mappedTasks = dbTasks.map((dbTask) => ({
+      id: dbTask._id.toHexString(),
+      title: dbTask.title,
+      description: dbTask.description,
+      date: dbTask.date,
+    }));
+
+    return mappedTasks;
+  }
 }
