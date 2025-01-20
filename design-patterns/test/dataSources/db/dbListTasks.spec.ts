@@ -1,6 +1,6 @@
 import { DbListTasks } from "../../../src/dataSources/db/dbListTasks";
 import { Task } from "../../../src/entities/task";
-import { AddATaskModel } from "../../../src/usecases/addTask";
+import { AddTaskModel } from "../../../src/usecases/addTask";
 import { TaskRepository } from "../../../src/usecases/repository";
 
 interface SutTypes {
@@ -23,7 +23,7 @@ const makeTaskRepository = (): TaskRepository => {
       return Promise.resolve(makeTaskListMock());
     }
 
-    add(taskData: AddATaskModel): Promise<Task> {
+    add(taskData: AddTaskModel): Promise<Task> {
       return Promise.resolve({
         id: "any_id",
         title: "any_title",

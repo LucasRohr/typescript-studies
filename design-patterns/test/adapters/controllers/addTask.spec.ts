@@ -1,6 +1,6 @@
 import { AddTask } from "../../../src/usecases";
 import { Task } from "../../../src/entities/task";
-import { AddATaskModel } from "../../../src/usecases/addTask";
+import { AddTaskModel } from "../../../src/usecases/addTask";
 import { AddTaskController } from "../../../src/adapters/controllers/task/addTask";
 import { HttpRequest, Validation } from "../../../src/adapters/interfaces";
 import {
@@ -17,7 +17,7 @@ interface SutTypes {
 
 const makeAddTask = (): AddTask => {
   class AddTaskStub implements AddTask {
-    async add(task: AddATaskModel): Promise<Task> {
+    async add(task: AddTaskModel): Promise<Task> {
       return Promise.resolve({
         id: "any_id",
         title: "any_title",

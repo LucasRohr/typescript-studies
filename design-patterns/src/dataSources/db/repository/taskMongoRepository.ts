@@ -1,12 +1,12 @@
 import { ServerError } from "../../../adapters/presentations/api/errors/server-error";
 import { Task } from "../../../entities/task";
-import { AddATaskModel } from "../../../usecases/addTask";
+import { AddTaskModel } from "../../../usecases/addTask";
 import { TaskRepository } from "../../../usecases/repository/taskRepository";
 import { MongoManager } from "../../config/mongoManager";
 import { ObjectId } from "mongodb";
 
 export class TaskMongoRepository implements TaskRepository {
-  async add(taskData: AddATaskModel): Promise<Task> {
+  async add(taskData: AddTaskModel): Promise<Task> {
     const tasksCollection = MongoManager.getInstance().getCollection("tasks");
 
     const { insertedId } = await tasksCollection.insertOne(taskData);

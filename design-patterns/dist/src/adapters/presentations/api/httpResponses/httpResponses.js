@@ -1,12 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ok = exports.deleted = exports.noContent = exports.created = exports.serverError = exports.badRequest = void 0;
+exports.ok = exports.deleted = exports.noContent = exports.created = exports.serverError = exports.notFound = exports.badRequest = void 0;
 const server_error_1 = require("../errors/server-error");
 const badRequest = (error) => ({
     statusCode: 400,
     body: error,
 });
 exports.badRequest = badRequest;
+const notFound = (error) => ({
+    statusCode: 404,
+    body: error,
+});
+exports.notFound = notFound;
 const serverError = (error) => ({
     statusCode: 500,
     body: new server_error_1.ServerError(error.stack),

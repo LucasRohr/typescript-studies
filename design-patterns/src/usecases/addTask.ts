@@ -1,11 +1,11 @@
 import { Task } from "../entities/task";
 
-export interface AddATaskModel {
+export interface AddTaskModel {
   title: string;
   description: string;
   date: string;
 }
 
 export interface AddTask {
-  add(task: AddATaskModel): Promise<Task>;
+  add(task: AddTaskModel): Promise<Task>;
 }
