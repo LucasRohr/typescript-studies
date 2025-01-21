@@ -2,6 +2,7 @@ import { DbListTasks } from "../../../src/dataSources/db/dbListTasks";
 import { Task } from "../../../src/entities/task";
 import { AddTaskModel } from "../../../src/usecases/addTask";
 import { TaskRepository } from "../../../src/usecases/repository";
+import { UpdateTaskModel } from "../../../src/usecases/updateTask";
 
 interface SutTypes {
   dbListTasks: DbListTasks;
@@ -34,6 +35,15 @@ const makeTaskRepository = (): TaskRepository => {
 
     delete(taskId: string): Promise<void | Error> {
       return Promise.resolve();
+    }
+
+    update(updateTask: UpdateTaskModel): Promise<Task> {
+      return Promise.resolve({
+        id: "any_id",
+        title: "any_title",
+        description: "any_description",
+        date: "13/08/2001",
+      });
     }
   }
 

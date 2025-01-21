@@ -2,6 +2,7 @@ import { ServerError } from "../../../adapters/presentations/api/errors/server-e
 import { Task } from "../../../entities/task";
 import { AddTaskModel } from "../../../usecases/addTask";
 import { TaskRepository } from "../../../usecases/repository/taskRepository";
+import { UpdateTaskModel } from "../../../usecases/updateTask";
 import { MongoManager } from "../../config/mongoManager";
 import { ObjectId } from "mongodb";
 
@@ -56,5 +57,14 @@ export class TaskMongoRepository implements TaskRepository {
     }));
 
     return mappedTasks;
+  }
+
+  update(updateTask: UpdateTaskModel): Promise<Task> {
+    return Promise.resolve({
+      id: "any_id",
+      title: "any_title",
+      description: "any_description",
+      date: "13/08/2001",
+    });
   }
 }
