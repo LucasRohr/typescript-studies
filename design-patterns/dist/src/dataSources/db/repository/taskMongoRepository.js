@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TaskMongoRepository = void 0;
+const not_found_error_1 = require("../../../adapters/presentations/api/errors/not-found-error");
 const server_error_1 = require("../../../adapters/presentations/api/errors/server-error");
 const mongoManager_1 = require("../../config/mongoManager");
 const mongodb_1 = require("mongodb");
@@ -41,6 +42,25 @@ class TaskMongoRepository {
             date: dbTask.date,
         }));
         return mappedTasks;
+    }
+    async update(updateTask) {
+        const tasksColletion = mongoManager_1.MongoManager.getInstance().getCollection("tasks");
+        const { id, ...updateData } = updateTask;
+        const task = await tasksColletion.findOne({ _id: new mongodb_1.ObjectId(id) });
+        if (!task) {
+            throw new not_found_error_1.NotFoundError();
+        }
+        const result = await tasksColletion.updateOne({ _id: new mongodb_1.ObjectId(id) }, { $set: updateData });
+        if (!result.acknowledged) {
+            throw new server_error_1.ServerError();
+        }
+        const updatedTask = await tasksColletion.findOne({ _id: new mongodb_1.ObjectId(id) });
+        return {
+            id,
+            title: updatedTask === null || updatedTask === void 0 ? void 0 : updatedTask.title,
+            description: updatedTask === null || updatedTask === void 0 ? void 0 : updatedTask.description,
+            date: updatedTask === null || updatedTask === void 0 ? void 0 : updatedTask.date,
+        };
     }
 }
 exports.TaskMongoRepository = TaskMongoRepository;

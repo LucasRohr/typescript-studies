@@ -25,6 +25,14 @@ const makeTaskRepository = () => {
         delete(taskId) {
             return Promise.resolve();
         }
+        update(updateTask) {
+            return Promise.resolve({
+                id: "any_id",
+                title: "any_title",
+                description: "any_description",
+                date: "13/08/2001",
+            });
+        }
     }
     return new TaskRepositoryStub();
 };

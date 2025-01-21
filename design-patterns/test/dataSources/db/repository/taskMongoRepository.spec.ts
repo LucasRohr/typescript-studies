@@ -55,6 +55,10 @@ describe("Task Mongo Repository", () => {
     await mongoClient.disconnect();
   });
 
+  beforeEach(async () => {
+    await mongoClient.getCollection("tasks").deleteMany({});
+  });
+
   it("Should return the tasks when the list method call is successful", async () => {
     // Arrange
     const { repository } = makeSut();
