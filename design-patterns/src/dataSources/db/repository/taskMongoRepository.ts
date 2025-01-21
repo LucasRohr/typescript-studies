@@ -1,3 +1,4 @@
+import { NotFoundError } from "../../../adapters/presentations/api/errors/not-found-error";
 import { ServerError } from "../../../adapters/presentations/api/errors/server-error";
 import { Task } from "../../../entities/task";
 import { AddTaskModel } from "../../../usecases/addTask";
@@ -59,12 +60,32 @@ export class TaskMongoRepository implements TaskRepository {
     return mappedTasks;
   }
 
-  update(updateTask: UpdateTaskModel): Promise<Task> {
-    return Promise.resolve({
-      id: "any_id",
-      title: "any_title",
-      description: "any_description",
-      date: "13/08/2001",
-    });
+  async update(updateTask: UpdateTaskModel): Promise<Task> {
+    const tasksColletion = MongoManager.getInstance().getCollection("tasks");
+    const { id, ...updateData } = updateTask;
+
+    const task = await tasksColletion.findOne({ _id: new ObjectId(id) });
+
+    if (!task) {
+      throw new NotFoundError();
+    }
+
+    const result = await tasksColletion.updateOne(
+      { _id: new ObjectId(id) },
+      { $set: updateData }
+    );
+
+    if (!result.acknowledged) {
+      throw new ServerError();
+    }
+
+    const updatedTask = await tasksColletion.findOne({ _id: new ObjectId(id) });
+
+    return {
+      id,
+      title: updatedTask?.title,
+      description: updatedTask?.description,
+      date: updatedTask?.date,
+    };
   }
 }
