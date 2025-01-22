@@ -21,3 +21,9 @@ TypeScript studies for professional growth and knowledge, following activities m
 - Liskov Substitution Principle
 - Interface Segregation Principle
 - Dependency Inversion Principle
+
+**Design Patterns project** - _project to study different design patterns, clean architecture and tests_:
+
+- Design patterns: Adapter, Singleton, Factory, Template, Decorator and Composite
+- Clean Architecture: layers and organization
+- TDD (Test-Driven Development) using Jest
